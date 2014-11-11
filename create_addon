@@ -1,0 +1,23 @@
+#!/bin/sh
+
+. packages/audo-programs/meta
+
+rm -rf target/$PKG_VERSION.$PKG_REV/
+
+mkdir build
+
+cp -rf script.module.audo-programs build/script.module.audo-programs
+
+rm build/script.module.audo-programs/resources/.gitignore
+
+for i in mkpkg/mkpkg_*;do
+ $i
+done
+
+mkdir -p target/$PKG_VERSION.$PKG_REV/
+cd build
+zip -rq9 ../target/$PKG_VERSION.$PKG_REV/$PKG_NAME-$PKG_VERSION.$PKG_REV.zip script.module.audo-programs
+cp script.module.audo-programs/changelog.txt ../target/$PKG_VERSION.$PKG_REV/changelog-$PKG_VERSION.$PKG_REV.txt
+cp script.module.audo-programs/addon.xml ../target/$PKG_VERSION.$PKG_REV/addon.xml
+cd ..
+rm -rf build

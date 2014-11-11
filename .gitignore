@@ -1,0 +1,7 @@
+build*
+build*/*
+target
+target/*
+mkpkg/build.*
+mkpkg/build.*/*
+mkpkg/SABnzbd-*

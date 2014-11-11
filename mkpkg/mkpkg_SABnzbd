@@ -1,0 +1,26 @@
+#!/bin/sh
+
+. packages/SABnzbd/meta
+cd mkpkg
+
+echo "building $PKG_NAME..."
+echo "getting sources..."
+  if [ ! -d build.$PKG_NAME-$PKG_VERSION-src ]; then
+    wget $PKG_URL
+    echo "extracting sources..."
+    tar xzf $PKG_NAME-$PKG_VERSION-src.tar.gz
+    mv $PKG_NAME-$PKG_VERSION build.$PKG_NAME-$PKG_VERSION-src
+    rm $PKG_NAME-$PKG_VERSION-src.tar.gz
+  fi
+
+  echo "copying sources..."
+   rm -rf $PKG_NAME-$PKG_VERSION
+   cp -R build.$PKG_NAME-$PKG_VERSION-src $PKG_NAME-$PKG_VERSION
+
+  echo "cleaning sources..."
+    rm -rf $PKG_NAME-$PKG_VERSION/*.txt $PKG_NAME-$PKG_VERSION/Sample-* $PKG_NAME-$PKG_VERSION/PKG-INFO $PKG_NAME-$PKG_VERSION/licenses
+
+  echo "moving sources..."
+   mv $PKG_NAME-$PKG_VERSION ../build/script.module.audo-programs/resources/$PKG_NAME
+
+  echo "done"
