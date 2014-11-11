@@ -8,10 +8,10 @@ mkdir build
 
 cp -rf $PKG_NAME build/$PKG_NAME
 
-rm build/$PKG_NAME/resources/.gitignore
+rm -f build/$PKG_NAME/resources/.gitignore
 
-for i in mkpkg/mkpkg_*;do
- $i
+for i in $PKG_DEPENDS;do
+ mkpkg/mkpkg_$i
 done
 
 mkdir -p target/$PKG_VERSION.$PKG_REV/
