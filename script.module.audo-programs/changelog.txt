@@ -1,3 +1,6 @@
+0.0.3
+- removed openelec requirement should work on all linux xbmc installs
+
 0.0.2
 - update to Sabnzbd-0.7.19
 - update to CouchPotatoServer-7ec64e2
