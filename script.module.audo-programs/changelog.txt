@@ -2,8 +2,8 @@
 - removed openelec requirement should work on all linux xbmc installs
 - update to Sabnzbd-0.7.20
 - update to CouchPotatoServer-build/2.6.1
-- update to HeadPhones-f15ad44
-- update to SickRage-v3.1.0
+- update to HeadPhones-v0.5.1
+- update to SickRage-v3.9.2
 
 0.0.2
 - update to Sabnzbd-0.7.19
