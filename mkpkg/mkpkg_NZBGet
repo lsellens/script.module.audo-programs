@@ -1,0 +1,22 @@
+#!/bin/sh
+
+. packages/NZBGet/meta
+cd mkpkg
+
+echo "building $PKG_NAME..."
+echo "getting sources..."
+  if [ ! -d build.$PKG_NAME-$PKG_VERSION ]; then
+    wget $PKG_URL
+    mkdir $PKG_NAME-$PKG_VERSION
+    mv $PKG_NAME-$PKG_VERSION-bin-linux.run $PKG_NAME-$PKG_VERSION/$PKG_NAME-bin-linux.run
+    mv $PKG_NAME-$PKG_VERSION build.$PKG_NAME-$PKG_VERSION
+  fi
+
+  echo "copying sources..."
+   rm -rf $PKG_NAME-$PKG_VERSION
+   cp -R build.$PKG_NAME-$PKG_VERSION $PKG_NAME-$PKG_VERSION
+
+  echo "moving sources..."
+   mv $PKG_NAME-$PKG_VERSION ../build/script.module.audo-programs/resources/$PKG_NAME
+
+  echo "done"

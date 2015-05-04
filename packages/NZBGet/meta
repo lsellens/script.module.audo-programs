@@ -1,0 +1,4 @@
+PKG_NAME="nzbget"
+PKG_VERSION="15.0-testing-r1271"
+PKG_URL="http://sourceforge.net/projects/nzbget/files/${PKG_NAME}-${PKG_VERSION}-bin-linux.run"
+
