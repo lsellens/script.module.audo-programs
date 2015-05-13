@@ -8,6 +8,7 @@ echo "getting sources..."
   if [ ! -d build.$PKG_NAME-$PKG_VERSION ]; then
     wget $PKG_URL
     mkdir $PKG_NAME-$PKG_VERSION
+    chmod +x $PKG_NAME-$PKG_VERSION-bin-linux.run
     mv $PKG_NAME-$PKG_VERSION-bin-linux.run $PKG_NAME-$PKG_VERSION/$PKG_NAME-bin-linux.run
     mv $PKG_NAME-$PKG_VERSION build.$PKG_NAME-$PKG_VERSION
   fi

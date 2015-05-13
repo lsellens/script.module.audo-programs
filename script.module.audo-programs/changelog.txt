@@ -1,6 +1,7 @@
 0.0.9
 - Added NZBGet-15.0-testing-r1271
-- update to SickRage-v4.0.19
+- update to SickRage-v4.0.20
+- update to HeadPhones-v0.5.5
 
 0.0.8
 - update to SickRage-v4.0.18
