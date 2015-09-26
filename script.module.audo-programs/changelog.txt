@@ -1,6 +1,6 @@
 0.0.9
 - Added NZBGet-15.0
-- update to SickRage-v4.0.59
+- update to SickRage-v4.0.67
 - update to HeadPhones-v0.5.9
 - update to CouchPotatoServer-build/3.0.1
 
