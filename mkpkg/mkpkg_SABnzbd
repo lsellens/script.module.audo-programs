@@ -17,6 +17,14 @@ echo "getting sources..."
    rm -rf $PKG_NAME-$PKG_VERSION
    cp -R build.$PKG_NAME-$PKG_VERSION-src $PKG_NAME-$PKG_VERSION
 
+for i in patches/$PKG_NAME-*.patch; do
+  if [ -f "$i" ]; then
+    echo "patching sources..."
+    echo $i
+    cat $i | patch -p1 -d `echo "$PKG_NAME-$GIT_REV" | cut -f1 -d\ `
+  fi
+done
+
   echo "cleaning sources..."
     rm -rf $PKG_NAME-$PKG_VERSION/*.txt $PKG_NAME-$PKG_VERSION/Sample-* $PKG_NAME-$PKG_VERSION/PKG-INFO $PKG_NAME-$PKG_VERSION/licenses
 
