@@ -7,17 +7,24 @@ echo "building $PKG_NAME..."
 echo "getting sources..."
   if [ ! -d build.$PKG_NAME-$PKG_VERSION ]; then
     wget $PKG_URL
+    if [ "$?" = "1" ]; then
+      echo "error downloading source: $1";exit 1
+    fi
     mkdir $PKG_NAME-$PKG_VERSION
     chmod +x $PKG_NAME-$PKG_VERSION-bin-linux.run
     mv $PKG_NAME-$PKG_VERSION-bin-linux.run $PKG_NAME-$PKG_VERSION/$PKG_NAME-bin-linux.run
     mv $PKG_NAME-$PKG_VERSION build.$PKG_NAME-$PKG_VERSION
   fi
 
-  echo "copying sources..."
-   rm -rf $PKG_NAME-$PKG_VERSION
-   cp -R build.$PKG_NAME-$PKG_VERSION $PKG_NAME-$PKG_VERSION
+echo "copying sources..."
+  rm -rf $PKG_NAME-$PKG_VERSION
+  cp -R build.$PKG_NAME-$PKG_VERSION $PKG_NAME-$PKG_VERSION
 
-  echo "moving sources..."
-   mv $PKG_NAME-$PKG_VERSION ../build/script.module.audo-programs/resources/$PKG_NAME
+echo "moving sources..."
+  mv $PKG_NAME-$PKG_VERSION ../build/script.module.audo-programs/resources/$PKG_NAME
+  if [ "$?" = "1" ]; then
+    echo "error building $PKG_NAME: $1";exit 1
+  fi
 
-  echo "done"
+echo "done"
+exit 0

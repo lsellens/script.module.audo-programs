@@ -7,28 +7,41 @@ echo "building $PKG_NAME..."
 echo "getting sources..."
   if [ ! -d build.$PKG_NAME-$PKG_VERSION-src ]; then
     wget $PKG_URL
+    if [ "$?" = "1" ]; then
+      echo "error downloading source: $1";exit 1
+    fi
     echo "extracting sources..."
     tar xzf $PKG_NAME-$PKG_VERSION-src.tar.gz
+    if [ "$?" = "1" ]; then
+      echo "error extracting source: $1";exit 1
+    fi
     mv $PKG_NAME-$PKG_VERSION build.$PKG_NAME-$PKG_VERSION-src
     rm $PKG_NAME-$PKG_VERSION-src.tar.gz
   fi
 
-  echo "copying sources..."
-   rm -rf $PKG_NAME-$PKG_VERSION
-   cp -R build.$PKG_NAME-$PKG_VERSION-src $PKG_NAME-$PKG_VERSION
+echo "copying sources..."
+  rm -rf $PKG_NAME-$PKG_VERSION
+  cp -R build.$PKG_NAME-$PKG_VERSION-src $PKG_NAME-$PKG_VERSION
 
 for i in patches/$PKG_NAME-*.patch; do
   if [ -f "$i" ]; then
     echo "patching sources..."
     echo $i
     cat $i | patch -p1 -d `echo "$PKG_NAME-$GIT_REV" | cut -f1 -d\ `
+    if [ "$?" = "1" ]; then
+      echo "error patching source: $1";exit 1
+    fi
   fi
 done
 
-  echo "cleaning sources..."
-    rm -rf $PKG_NAME-$PKG_VERSION/*.txt $PKG_NAME-$PKG_VERSION/Sample-* $PKG_NAME-$PKG_VERSION/PKG-INFO $PKG_NAME-$PKG_VERSION/licenses
+echo "cleaning sources..."
+   rm -rf $PKG_NAME-$PKG_VERSION/*.txt $PKG_NAME-$PKG_VERSION/scripts $PKG_NAME-$PKG_VERSION/PKG-INFO $PKG_NAME-$PKG_VERSION/licenses
 
-  echo "moving sources..."
-   mv $PKG_NAME-$PKG_VERSION ../build/script.module.audo-programs/resources/$PKG_NAME
+echo "moving sources..."
+  mv $PKG_NAME-$PKG_VERSION ../build/script.module.audo-programs/resources/$PKG_NAME
+  if [ "$?" = "1" ]; then
+    echo "error building $PKG_NAME: $1";exit 1
+  fi
 
-  echo "done"
+echo "done"
+exit 0
