@@ -1,5 +1,7 @@
 0.1.3
 - addon now requires helix or above
+- update to NZBGet-16.2
+- update to SickRage-v4.0.76
 
 0.1.2
 - update to SickRage-v4.0.75.4
