@@ -20,6 +20,17 @@ echo "copying sources..."
   rm -rf $PKG_NAME-$PKG_VERSION
   cp -R build.$PKG_NAME-$PKG_VERSION $PKG_NAME-$PKG_VERSION
 
+for i in patches/$PKG_NAME-*.patch; do
+  if [ -f "$i" ]; then
+    echo "copying source patch..."
+    echo $i
+    cp $i $PKG_NAME-$PKG_VERSION
+    if [ "$?" = "1" ]; then
+      echo "error copying source patch: $1";exit 1
+    fi
+  fi
+done
+
 echo "moving sources..."
   mv $PKG_NAME-$PKG_VERSION ../build/script.module.audo-programs/resources/$PKG_NAME
   if [ "$?" = "1" ]; then

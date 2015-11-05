@@ -1,3 +1,7 @@
+0.1.5
+- update to SickRage-v4.1.0
+- fix for configobj not able to parse nzbget config
+
 0.1.4
 - update to NZBGet-16.3
 - update to SickRage-v4.0.76.2
