@@ -6,7 +6,7 @@ cd mkpkg
 echo "building $PKG_NAME..."
 echo "getting sources..."
   if [ ! -d build.$PKG_NAME.git ]; then
-    git clone --recursive $PKG_SITE.git build.$PKG_NAME.git
+    git clone $PKG_SITE.git build.$PKG_NAME.git
     if [ "$?" = "1" ]; then
       echo "error cloning source: $1";exit 1
     fi
@@ -15,12 +15,10 @@ echo "getting sources..."
   cd build.$PKG_NAME.git
     git checkout master
     git pull
-    git submodule init
     git checkout $PKG_VERSION
     if [ "$?" = "1" ]; then
       echo "error checking out $PKG_VERSION: $1";exit 1
     fi
-    git submodule update
     GIT_REV=`git log -n1 --format=%h`
   cd ..
 
@@ -40,7 +38,7 @@ for i in patches/$PKG_NAME-*.patch; do
 done
 
 echo "cleaning sources..."
-  rm -rf $PKG_NAME-$GIT_REV/.git* $PKG_NAME-$GIT_REV/.travis.yml $PKG_NAME-$GIT_REV/runscripts $PKG_NAME-$GIT_REV/*.md $PKG_NAME-$GIT_REV/*.txt $PKG_NAME-$GIT_REV/contrib/nzbToMedia/nzbToGamez.py $PKG_NAME-$GIT_REV/contrib/nzbToMedia/nzbToMylar.py $PKG_NAME-$GIT_REV/contrib/nzbToMedia/nzbToNzbDrone.py $PKG_NAME-$GIT_REV/contrib/nzbToMedia/.git* $PKG_NAME-$GIT_REV/contrib/nzbToMedia/getffmpeg.sh
+  rm -rf $PKG_NAME-$GIT_REV/.git* $PKG_NAME-$GIT_REV/.travis.yml $PKG_NAME-$GIT_REV/runscripts $PKG_NAME-$GIT_REV/*.md $PKG_NAME-$GIT_REV/*.txt
 
 echo "moving sources..."
   mv $PKG_NAME-$GIT_REV ../build/script.module.audo-programs/resources/$PKG_NAME
