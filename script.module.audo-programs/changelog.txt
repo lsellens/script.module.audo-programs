@@ -1,3 +1,7 @@
+0.1.8
+- update to SickRage-v4.2.1.07
+- update to CouchPotatoServer-de141aa
+
 0.1.7
 - update to NZBGet-16.4
 - update to SickRage-v4.2.1.03
