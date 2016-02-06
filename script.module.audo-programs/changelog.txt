@@ -1,3 +1,7 @@
+0.2.3
+- update to Sabnzbd-1.0.0RC1
+- update to HeadPhones-v0.5.10
+
 0.2.2
 - update to Sabnzbd-0.8.0-beta6
 - update to CouchPotatoServer-89fd4e1
