@@ -1,3 +1,8 @@
+0.2.5
+- update to HeadPhones-v0.5.13
+- update to Sabnzbd-1.0.0
+- update to SickRage-cc2812a
+
 0.2.4
 - update to HeadPhones-v0.5.11
 - update to CouchPotatoServer-f94a8a9
