@@ -1,4 +1,4 @@
 PKG_NAME="nzbget"
 PKG_VERSION="17.0-r1686"
-PKG_URL="http://github.com/nzbget/nzbget/releases/download/v${PKG_VERSION}/${PKG_NAME}-${PKG_VERSION}-bin-linux.run"
-
+#PKG_URL="http://github.com/nzbget/nzbget/releases/download/v${PKG_VERSION}/${PKG_NAME}-${PKG_VERSION}-bin-linux.run"
+PKG_URL="https://github.com/nzbget/nzbget/releases/download/v${PKG_VERSION}/${PKG_NAME}-17.0-testing-r1686-bin-linux.run"
