@@ -1,5 +1,6 @@
 0.2.6
-- update to SickRage-bf18edd
+- update to Sabnzbd-1.0.1
+- update to SickRage-2f6204d
 - update to NZBGet-17.0-r1686
 - update to CouchPotatoServer-c4fad95
 
