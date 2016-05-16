@@ -1,3 +1,7 @@
+0.2.7
+- update to Sabnzbd-1.0.2
+- update to SickRage-b790df7
+
 0.2.6
 - update to Sabnzbd-1.0.1
 - update to SickRage-2f6204d
