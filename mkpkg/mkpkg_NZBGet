@@ -11,8 +11,8 @@ echo "getting sources..."
       echo "error downloading source: $1";exit 1
     fi
     mkdir $PKG_NAME-$PKG_VERSION
-    chmod +x $PKG_NAME-17.0-testing-r1686-bin-linux.run
-    mv $PKG_NAME-17.0-testing-r1686-bin-linux.run $PKG_NAME-$PKG_VERSION/$PKG_NAME-bin-linux.run
+    chmod +x $PKG_NAME-17.0-testing-r1716-bin-linux.run
+    mv $PKG_NAME-17.0-testing-r1716-bin-linux.run $PKG_NAME-$PKG_VERSION/$PKG_NAME-bin-linux.run
     mv $PKG_NAME-$PKG_VERSION build.$PKG_NAME-$PKG_VERSION
   fi
 
