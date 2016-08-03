@@ -1,3 +1,7 @@
+0.3.1
+- rolled back to Sabnzbd-1.0.3
+- update to SickRage-4e8b9ee
+
 0.3.0
 - update to Sabnzbd-1.1.0RC2
 - update to SickRage-570cd20
