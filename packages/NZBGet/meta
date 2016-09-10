@@ -1,3 +1,3 @@
 PKG_NAME="nzbget"
-PKG_VERSION="17.0"
+PKG_VERSION="17.1"
 PKG_URL="https://github.com/nzbget/nzbget/releases/download/v${PKG_VERSION}/${PKG_NAME}-${PKG_VERSION}-bin-linux.run"
