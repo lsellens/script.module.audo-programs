@@ -1,3 +1,6 @@
+0.3.3
+- update to SickRage-d66f885
+
 0.3.2
 - update to Sabnzbd-1.1.0
 - update to NZBGet-17.1
