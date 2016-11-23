@@ -1,3 +1,10 @@
+0.3.4
+- update to Sabnzbd-1.1.1
+- update to NZBGet-v18.0-r1820
+- update to SickRage-5443e1b
+- update to CouchPotatoServer-4057790
+- update to HeadPhones-v0.5.17
+
 0.3.3
 - update to SickRage-d66f885
 

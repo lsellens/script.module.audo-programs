@@ -7,7 +7,7 @@ echo "building $PKG_NAME..."
 echo "getting sources..."
   if [ ! -d build.$PKG_NAME.git ]; then
     git clone $PKG_SITE.git build.$PKG_NAME.git
-    if [ "$?" = "1" ]; then
+    if [ "$?" -ne "0" ]; then
       echo "error cloning source: $1";exit 1
     fi
   fi
@@ -16,7 +16,7 @@ echo "getting sources..."
     git checkout master
     git pull
     git checkout $PKG_VERSION
-    if [ "$?" = "1" ]; then
+    if [ "$?" -ne "0" ]; then
       echo "error checking out $PKG_VERSION: $1";exit 1
     fi
     GIT_REV=`git log -n1 --format=%h`
@@ -31,7 +31,7 @@ for i in patches/$PKG_NAME-*.patch; do
     echo "patching sources..."
     echo $i
     cat $i | patch -p1 -d `echo "$PKG_NAME-$GIT_REV" | cut -f1 -d\ `
-    if [ "$?" = "1" ]; then
+    if [ "$?" -ne "0" ]; then
       echo "error patching source: $1";exit 1
     fi
   fi
@@ -42,7 +42,7 @@ echo "cleaning sources..."
 
 echo "moving sources..."
   mv $PKG_NAME-$GIT_REV ../build/script.module.audo-programs/resources/$PKG_NAME
-  if [ "$?" = "1" ]; then
+  if [ "$?" -ne "0" ]; then
     echo "error building $PKG_NAME: $1";exit 1
   fi
 
