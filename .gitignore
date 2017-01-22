@@ -5,3 +5,5 @@ target/*
 mkpkg/build.*
 mkpkg/build.*/*
 mkpkg/SABnzbd-*
+mkpkg/sources
+mkpkg/sources/*

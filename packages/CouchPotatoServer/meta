@@ -1,3 +1,4 @@
 PKG_NAME="CouchPotatoServer"
-PKG_VERSION="4057790"
+PKG_VERSION="b538f9a"
 PKG_SITE="https://github.com/CouchPotato/CouchPotatoServer"
+PKG_DEPENDS=""

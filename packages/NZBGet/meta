@@ -1,3 +1,4 @@
 PKG_NAME="nzbget"
-PKG_VERSION="18.0-testing-r1841"
-PKG_URL="https://github.com/nzbget/nzbget/releases/download/v18.0-r1841/${PKG_NAME}-${PKG_VERSION}-bin-linux.run"
+PKG_VERSION="18.0-testing-r1858"
+PKG_URL="https://github.com/nzbget/nzbget/releases/download/v18.0-r1858/${PKG_NAME}-${PKG_VERSION}-bin-linux.run"
+PKG_DEPENDS=""
