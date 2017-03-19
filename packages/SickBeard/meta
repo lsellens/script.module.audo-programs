@@ -1,4 +1,4 @@
 PKG_NAME="SickBeard"
-PKG_VERSION="v2017.03.04-1"
+PKG_VERSION="v2017.03.13-1"
 PKG_SITE="https://github.com/SickRage/SickRage"
 PKG_DEPENDS=""
