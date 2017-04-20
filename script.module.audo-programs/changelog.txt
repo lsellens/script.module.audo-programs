@@ -1,3 +1,7 @@
+0.4.2
+- update to SickRage-v2017.04.14-1
+- update to Sabnzbd-2.0.0
+
 0.4.1
 - update to CouchPotatoServer-711310d
 - update to SickRage-v2017.03.25-1
