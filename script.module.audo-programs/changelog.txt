@@ -1,3 +1,6 @@
+0.4.3
+- update to SickRage-v2017.04.26-1
+
 0.4.2
 - update to SickRage-v2017.04.14-1
 - update to Sabnzbd-2.0.0

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="script.module.audo-programs"
        name="audo-programs"
-       version="0.4.2"
+       version="0.4.3"
        provider-name="lsellens">
   <requires>
     <import addon="xbmc.addon" version="14.0.0"/>
@@ -16,5 +16,11 @@
     <description lang="sv">Detta är ett paket med kärnprogram för audo. Innehåller SABnzbd, NZBGet, HeadPhones, CouchPotato och Sickbeard (sickrage gren).</description>
     <language>en hy_AM ca_ES nl fr de fa pl pt pt_BR es sv tr</language>
     <platform>linux</platform>
+    <license>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</license>
+    <source>https://github.com/lsellens/script.module.audo-programs</source>
+    <news>0.4.3 - update to SickRage-v2017.04.26-1</news>
+    <assets>
+      <icon>resources/icon.png</icon>
+    </assets>
   </extension>
 </addon>
