@@ -1,3 +1,5 @@
+- update to Sabnzbd-2.1.0
+
 0.4.5
 - update to SickRage-v2017.06.05-1
 - update to CouchPotatoServer-ec42591

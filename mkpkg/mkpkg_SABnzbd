@@ -35,7 +35,7 @@ for i in patches/$PKG_NAME-*.patch; do
 done
 
 echo "cleaning sources..."
-   rm -rf $PKG_NAME-$PKG_VERSION/*.txt $PKG_NAME-$PKG_VERSION/scripts $PKG_NAME-$PKG_VERSION/PKG-INFO $PKG_NAME-$PKG_VERSION/licenses
+   rm -rf $PKG_NAME-$PKG_VERSION/*.txt $PKG_NAME-$PKG_VERSION/scripts $PKG_NAME-$PKG_VERSION/PKG-INFO $PKG_NAME-$PKG_VERSION/licenses $PKG_NAME-$PKG_VERSION/interfaces/*/licenses $PKG_NAME-$PKG_VERSION/linux $PKG_NAME-$PKG_VERSION/*/*/*.txt
 
 echo "moving sources..."
   mv $PKG_NAME-$PKG_VERSION ../build/script.module.audo-programs/resources/$PKG_NAME

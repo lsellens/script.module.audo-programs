@@ -1,4 +1,4 @@
 PKG_NAME="script.module.audo-programs"
 PKG_VERSION="0.4"
-PKG_REV="5"
+PKG_REV="6"
 PKG_DEPENDS="SABnzbd SickBeard Headphones CouchPotatoServer NZBGet"

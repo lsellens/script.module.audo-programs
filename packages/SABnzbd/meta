@@ -1,4 +1,4 @@
 PKG_NAME="SABnzbd"
-PKG_VERSION="2.0.1"
+PKG_VERSION="2.1.0"
 PKG_URL="https://github.com/sabnzbd/sabnzbd/releases/download/${PKG_VERSION}/${PKG_NAME}-${PKG_VERSION}-src.tar.gz"
 PKG_DEPENDS=""
