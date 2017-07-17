@@ -2,18 +2,18 @@
 #
 # E-Mail post-processing script for NZBGet
 #
-# Copyright (C) 2013-2016 Andrey Prygunkov <hugbug@users.sourceforge.net>
+# Copyright (C) 2013-2017 Andrey Prygunkov <hugbug@users.sourceforge.net>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
@@ -34,10 +34,12 @@
 # When to send the message (Always, OnFailure).
 #SendMail=Always
 
-# Email address you want this email to be sent from. 
+# Email address you want this email to be sent from.
 #From=myaccount@gmail.com
 
-# Email address you want this email to be sent to. 
+# Email address you want this email to be sent to.
+#
+# Multiple addresses can be separated with comma.
 #To=myaccount@gmail.com
 
 # SMTP server host.
@@ -57,6 +59,9 @@
 
 # SMTP server password, if required.
 #Password=mypass
+
+# To check connection parameters click the button.
+#ConnectionTest@Send Test E-Mail
 
 # Append statistics to the message (yes, no).
 #Statistics=yes
@@ -112,38 +117,46 @@ for	optname in required_options:
 		print('[ERROR] Option %s is missing in configuration file. Please check script settings' % optname[6:])
 		sys.exit(POSTPROCESS_ERROR)
 
-status = os.environ['NZBPP_STATUS']
-total_status = os.environ['NZBPP_TOTALSTATUS']
+# Check if the script is executed from settings page with a custom command
+command = os.environ.get('NZBCP_COMMAND')
+test_mode = command == 'ConnectionTest'
+if command != None and not test_mode:
+	print('[ERROR] Invalid command ' + command)
+	sys.exit(POSTPROCESS_ERROR)
+
+status = os.environ.get('NZBPP_STATUS') if not test_mode else 'SUCCESS/ALL'
+total_status = os.environ.get('NZBPP_TOTALSTATUS') if not test_mode else 'SUCCESS'
 
 # If any script fails the status of the item in the history is "WARNING/SCRIPT".
 # This status however is not passed to pp-scripts in the env var "NZBPP_STATUS"
 # because most scripts are independent of each other and should work even
 # if a previous script has failed. But not in the case of E-Mail script,
 # which should take the status of the previous scripts into account as well.
-if total_status == 'SUCCESS' and os.environ['NZBPP_SCRIPTSTATUS'] == 'FAILURE':
+if total_status == 'SUCCESS' and os.environ.get('NZBPP_SCRIPTSTATUS') == 'FAILURE':
 	total_status = 'WARNING'
 	status = 'WARNING/SCRIPT'
-		
+
 success = total_status == 'SUCCESS'
 
-if success and os.environ.get('NZBPO_SENDMAIL') == 'OnFailure':
+if success and os.environ.get('NZBPO_SENDMAIL') == 'OnFailure' and not test_mode:
 	print('[INFO] Skipping sending of message for successful download')
 	sys.exit(POSTPROCESS_NONE)
 
 if success:
-	subject = 'Success for "%s"' % (os.environ['NZBPP_NZBNAME'])
-	text = 'Download of "%s" has successfully completed.' % (os.environ['NZBPP_NZBNAME'])
+	subject = 'Success for "%s"' % (os.environ.get('NZBPP_NZBNAME', 'Test download'))
+	text = 'Download of "%s" has successfully completed.' % (os.environ.get('NZBPP_NZBNAME', 'Test download'))
 else:
 	subject = 'Failure for "%s"' % (os.environ['NZBPP_NZBNAME'])
 	text = 'Download of "%s" has failed.' % (os.environ['NZBPP_NZBNAME'])
 
 text += '\nStatus: %s' % status
 
-if os.environ.get('NZBPO_STATISTICS') == 'yes' or \
+if (os.environ.get('NZBPO_STATISTICS') == 'yes' or \
 	os.environ.get('NZBPO_NZBLOG') == 'Always' or \
-	(os.environ.get('NZBPO_NZBLOG') == 'OnFailure' and not success):
+	(os.environ.get('NZBPO_NZBLOG') == 'OnFailure' and not success)) and \
+	not test_mode:
 	# To get statistics or the post-processing log we connect to NZBGet via XML-RPC.
-	# For more info visit http://nzbget.net/RPC_API_reference
+	# For more info visit http://nzbget.net/api
 	# First we need to know connection info: host, port and password of NZBGet server.
 	# NZBGet passes all configuration options to post-processing script as
 	# environment variables.
@@ -151,17 +164,17 @@ if os.environ.get('NZBPO_STATISTICS') == 'yes' or \
 	port = os.environ['NZBOP_CONTROLPORT'];
 	username = os.environ['NZBOP_CONTROLUSERNAME'];
 	password = os.environ['NZBOP_CONTROLPASSWORD'];
-	
+
 	if host == '0.0.0.0': host = '127.0.0.1'
-	
+
 	# Build an URL for XML-RPC requests
 	rpcUrl = 'http://%s:%s@%s:%s/xmlrpc' % (username, password, host, port);
-	
+
 	# Create remote server object
 	server = ServerProxy(rpcUrl)
 
-if os.environ.get('NZBPO_STATISTICS') == 'yes':
-	# Find correct nzb in method listgroups 
+if os.environ.get('NZBPO_STATISTICS') == 'yes' and not test_mode:
+	# Find correct nzb in method listgroups
 	groups = server.listgroups(0)
 	nzbID = int(os.environ['NZBPP_NZBID'])
 	for nzbGroup in groups:
@@ -204,7 +217,7 @@ if os.environ.get('NZBPO_STATISTICS') == 'yes':
 
 # add list of downloaded files
 files = False
-if os.environ.get('NZBPO_FILELIST') == 'yes':
+if os.environ.get('NZBPO_FILELIST') == 'yes' and not test_mode:
 	text += '\n\nFiles:'
 	for dirname, dirnames, filenames in os.walk(os.environ['NZBPP_DIRECTORY']):
 		for filename in filenames:
@@ -214,23 +227,24 @@ if os.environ.get('NZBPO_FILELIST') == 'yes':
 		text += '\n<no files found in the destination directory (moved by a script?)>'
 
 # add _brokenlog.txt (if exists)
-if os.environ.get('NZBPO_BROKENLOG') == 'yes':
+if os.environ.get('NZBPO_BROKENLOG') == 'yes' and not test_mode:
 	brokenlog = '%s/_brokenlog.txt' % os.environ['NZBPP_DIRECTORY']
 	if os.path.exists(brokenlog):
 		text += '\n\nBrokenlog:\n' + open(brokenlog, 'r').read().strip()
 
 # add post-processing log
-if os.environ.get('NZBPO_NZBLOG') == 'Always' or \
-	(os.environ.get('NZBPO_NZBLOG') == 'OnFailure' and not success):
+if (os.environ.get('NZBPO_NZBLOG') == 'Always' or \
+	(os.environ.get('NZBPO_NZBLOG') == 'OnFailure' and not success)) and \
+	not test_mode:
 
 	# To get the item log we connect to NZBGet via XML-RPC and call
 	# method "loadlog", which returns the log for a given nzb item.
-	# For more info visit http://nzbget.net/RPC_API_reference
-	
+	# For more info visit http://nzbget.net/api
+
 	# Call remote method 'loadlog'
 	nzbid = int(os.environ['NZBPP_NZBID'])
 	log = server.loadlog(nzbid, 0, 10000)
-	
+
 	# Now iterate through entries and save them to message text
 	if len(log) > 0:
 		text += '\n\nNzb-log:';
@@ -256,12 +270,12 @@ try:
 
 	if os.environ['NZBPO_ENCRYPTION'] == 'yes':
 		smtp.starttls()
-	
+
 	if os.environ['NZBPO_USERNAME'] != '' and os.environ['NZBPO_PASSWORD'] != '':
 		smtp.login(os.environ['NZBPO_USERNAME'], os.environ['NZBPO_PASSWORD'])
-	
-	smtp.sendmail(os.environ['NZBPO_FROM'], os.environ['NZBPO_TO'], msg.as_string())
-	
+
+	smtp.sendmail(os.environ['NZBPO_FROM'], os.environ['NZBPO_TO'].split(','), msg.as_string())
+
 	smtp.quit()
 except Exception as err:
 	print('[ERROR] %s' % err)
@@ -270,3 +284,4 @@ except Exception as err:
 # All OK, returning exit status 'POSTPROCESS_SUCCESS' (int <93>) to let NZBGet know
 # that our script has successfully completed.
 sys.exit(POSTPROCESS_SUCCESS)
+

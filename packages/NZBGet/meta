@@ -1,4 +1,4 @@
 PKG_NAME="nzbget"
-PKG_VERSION="18.0"
+PKG_VERSION="19.1"
 PKG_URL="https://github.com/nzbget/nzbget/releases/download/v${PKG_VERSION}/${PKG_NAME}-${PKG_VERSION}-bin-linux.run"
 PKG_DEPENDS=""

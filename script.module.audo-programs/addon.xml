@@ -18,7 +18,7 @@
     <platform>linux</platform>
     <license>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</license>
     <source>https://github.com/lsellens/script.module.audo-programs</source>
-    <news>0.4.6 - - update to Sabnzbd-2.1.0</news>
+    <news>0.4.6 - update to Sabnzbd-2.1.0 and CouchPotatoServer-05b7cab</news>
     <assets>
       <icon>resources/icon.png</icon>
     </assets>
