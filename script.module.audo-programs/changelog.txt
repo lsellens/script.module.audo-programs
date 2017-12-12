@@ -1,3 +1,10 @@
+0.4.9
+- update to Sabnzbd-2.3.1
+- update to CouchPotatoServer-dae7327
+
+0.4.8
+- update to Sabnzbd-2.3.0
+
 0.4.7
 - update to NZBGet-v19.1
 - update to CouchPotatoServer-0a97ed5
