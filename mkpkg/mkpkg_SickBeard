@@ -38,7 +38,7 @@ for i in patches/$PKG_NAME-*.patch; do
 done
 
 echo "cleaning sources..."
-  rm -rf $PKG_NAME-$GIT_REV/.git* $PKG_NAME-$GIT_REV/.travis.yml $PKG_NAME-$GIT_REV/runscripts $PKG_NAME-$GIT_REV/*.md $PKG_NAME-$GIT_REV/*.txt $PKG_NAME-$GIT_REV/setup.py
+  rm -rf $PKG_NAME-$GIT_REV/.git* $PKG_NAME-$GIT_REV/.travis.yml $PKG_NAME-$GIT_REV/runscripts $PKG_NAME-$GIT_REV/*.md $PKG_NAME-$GIT_REV/*.txt $PKG_NAME-$GIT_REV/contrib $PKG_NAME-$GIT_REV/setup.py
 
 echo "moving sources..."
   mv $PKG_NAME-$GIT_REV ../build/script.module.audo-programs/resources/$PKG_NAME
